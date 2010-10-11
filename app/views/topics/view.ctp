@@ -95,7 +95,7 @@ echo $html->link('Delete post',array('controller'=>'posts',
 <h3>Your reply</h3>
 <?php
 echo $form->create('Post', array('controller'=>'posts','action'=>'reply'));
-echo $form->hidden('topic_id', array('value'=>$post['topic_id']));
+echo $form->hidden('topic_id', array('value'=>$topic['Topic']['id']));
 echo $form->input('post_text', array('type'=>'textarea', 'label'=>false));
 echo $form->end('Save');
 ?>

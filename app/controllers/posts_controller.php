@@ -3,19 +3,16 @@ class PostsController extends AppController {
     var $name = 'Posts';
 
     function reply($id = null) {
+	$this->autoRender = false;
 	if ($this->data) {
 	    if ($this->Post->save($this->data)) {
 		$this->redirect(array(
-		    'controller'=>'topics',
-		    'action'=>'view',
-		    $this->data['Post']['topic_id']),
-		null, true);
+			'controller'=>'topics',
+			'action'=>'view',
+			$this->data['Post']['topic_id']),
+		    null, true);
 	    }
-	} else {
-	    $this->Post->id = $id;
-	    $topicId=$this->Post->field('topic_id');
-	    $this->data['Post']['topic_id']=$topicId;
-	}
+	} 
     }
 
     function edit($id) {
