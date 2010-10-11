@@ -21,7 +21,6 @@ class TopicsController extends AppController {
 	    'conditions'=>array('Topic.id' => $id),
 	    'contain'=>array(
 		'Posts'=>array(
-		    'Poster.username'
 		),
 		'Forum.name',
 	    )));

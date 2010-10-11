@@ -29,7 +29,6 @@ class ForumsController extends AppController {
 		),
 		'contain'=>array(
 		    'Topics' => array (
-			'User.username',
 			'id',
 			'title',
 			'created',
