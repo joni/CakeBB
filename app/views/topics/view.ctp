@@ -19,12 +19,12 @@ else:
 <div class="topicleader">
 <div class="postmeta">
 <?php
-if (empty($post['Poster'])) {
+if (empty($post['User'])) {
     echo 'Guest';
 } else {
-    echo $html->link($post['Poster']['username'],
+    echo $html->link($topic['User']['username'],
 	array('controller'=>'users','action'=>'view',
-	$post['Poster']['id']));
+	$topic['User']['id']));
 }
 ?>
  &mdash; 
@@ -59,12 +59,12 @@ echo $html->link('Delete topic',array('controller'=>'topics',
 <div class="post">
 <div class="postmeta">
 <?php
-if (empty($post['Poster'])) {
+if (empty($post['User'])) {
     echo 'Guest';
 } else {
-    echo $html->link($post['Poster']['username'],
+    echo $html->link($post['User']['username'],
 	array('controller'=>'users','action'=>'view',
-	$post['Poster']['id']));
+	$post['User']['id']));
 }
 ?>
  &mdash; 
