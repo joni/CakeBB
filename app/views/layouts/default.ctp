@@ -36,7 +36,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-		    <h1><?php echo $html->link('CakeBB - Your CakePHP community', array('controller'=>'forums','action'=>'index'));?></h1>
+		    <h1><?php echo $html->link('CakeBB - A CakePHP demo app', array('controller'=>'forums','action'=>'index'));?></h1>
 		</div>
 		<div id="content">
 
