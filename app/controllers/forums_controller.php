@@ -66,5 +66,13 @@ class ForumsController extends AppController {
 	$this->Forum->id = $id;
 	$this->data = $this->Forum->read();
     }
+
+    function isAuthorized() {
+	$userId = $this->Auth->user('id');
+	$aro = array('model' => 'User', 'foreign_key' => $userId);
+	// Require "admin" role for anything that's not explicitely allowed
+	$role = 'forum/admin';
+	return $this->Acl->check($aro, $role, '*');
+    } 
 }
 ?>

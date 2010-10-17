@@ -4,6 +4,9 @@ class Post extends AppModel {
 	'Topic' => array (
 	    'className' => 'Topic',
 	),
+	'User' => array (
+	    'className' => 'User',
+	),
     );
 }
 ?>

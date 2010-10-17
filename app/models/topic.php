@@ -5,6 +5,9 @@ class Topic extends AppModel {
 	'Forum' => array (
 	    'className' => 'Forum',
 	),
+	'User' => array (
+	    'className' => 'User',
+	),
     );
 
     var $hasMany = array (

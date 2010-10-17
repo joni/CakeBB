@@ -3,6 +3,8 @@ class TopicsController extends AppController {
 
     function add($forumId) {
 	if (!empty($this->data)) {
+	    $this->data['Topic']['user_id'] = $this->Auth->user('id');
+	    $this->data['Posts'][0]['user_id'] = $this->Auth->user('id');
 	    if ($this->Topic->saveAll($this->data)) {
 		$this->redirect(array('action'=>'view', 
 		    $this->Topic->id),
@@ -21,7 +23,9 @@ class TopicsController extends AppController {
 	    'conditions'=>array('Topic.id' => $id),
 	    'contain'=>array(
 		'Posts'=>array(
+		    'User' => array('id', 'username'),
 		),
+		'User' => array('id', 'username'),
 		'Forum.name',
 	    )));
 
@@ -48,5 +52,20 @@ class TopicsController extends AppController {
 	$this->redirect(array('controller'=>'forums',
 	    'action'=>'view',$forumId),null,true);
     }
+
+    function isAuthorized() {
+	// Require "mod" role for editing other's topics
+	$userId = $this->Auth->user('id');
+	$aro = array('model' => 'User', 'foreign_key' => $userId);
+	$role = 'forum/mod/user';
+	switch ($this->action) {
+	case 'delete':
+	case 'edit':
+	    $this->Topic->id = $this->params['pass'][0];
+	    $ownerId = $this->Topic->field('user_id');
+	    if ($ownerId != $userId) $role = 'forum/mod';
+	}
+	return $this->Acl->check($aro, $role, '*');
+    } 
 }
 ?>

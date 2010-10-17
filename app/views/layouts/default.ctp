@@ -37,8 +37,13 @@
 	<div id="container">
 		<div id="header">
 		    <h1><?php echo $html->link('CakeBB - A CakePHP demo app', array('controller'=>'forums','action'=>'index'));?></h1>
+
+		    <?php echo $this->Html->link('Log in', array('controller'=>'users','action'=>'login')); ?>
+		    <?php echo $this->Html->link('Log out', array('controller'=>'users','action'=>'logout')); ?>
 		</div>
 		<div id="content">
+
+			<?php echo $this->Session->flash('auth'); ?>
 
 			<?php echo $this->Session->flash(); ?>
 
